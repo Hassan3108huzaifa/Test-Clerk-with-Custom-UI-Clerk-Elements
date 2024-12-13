@@ -60,7 +60,9 @@ export default function SignInPage() {
             <SignIn.Strategy name="email_code">
               <h1 className="text-3xl font-bold tracking-tight text-zinc-900 mb-6 text-center">Check your email</h1>
               <p className="text-center text-zinc-600 mb-4">
-                We sent a code to <SignIn.SafeIdentifier className="font-medium" />.
+                We sent a code to <span className="font-medium">
+                  <SignIn.SafeIdentifier transform={(identifier) => identifier} />
+                </span>.
               </p>
 
               <Clerk.Field name="code" className="mb-4">
@@ -94,7 +96,9 @@ export default function SignInPage() {
             <SignIn.Strategy name="reset_password_email_code">
               <h1 className="text-3xl font-bold tracking-tight text-zinc-900 mb-6 text-center">Check your email</h1>
               <p className="text-center text-zinc-600 mb-4">
-                We sent a code to <SignIn.SafeIdentifier className="font-medium" />.
+                We sent a code to <span className="font-medium">
+                  <SignIn.SafeIdentifier transform={(identifier) => identifier} />
+                </span>.
               </p>
 
               <Clerk.Field name="code" className="mb-4">
@@ -112,9 +116,14 @@ export default function SignInPage() {
           <SignIn.Step name="forgot-password" className="rounded-2xl bg-white p-8 shadow-xl ring-1 ring-zinc-900/5">
             <h1 className="text-3xl font-bold tracking-tight text-zinc-900 mb-6 text-center">Forgot your password?</h1>
 
-            <SignIn.SupportedStrategy name="reset_password_email_code" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-zinc-600 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500 mb-4">
-              Reset password
-            </SignIn.SupportedStrategy>
+            <SignIn.SupportedStrategy 
+              name="reset_password_email_code"
+              children={
+                <button className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-zinc-600 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500 mb-4">
+                  Reset password
+                </button>
+              }
+            />
 
             <SignIn.Action navigate="previous" className="text-sm font-medium text-zinc-600 hover:text-zinc-500 text-center block">
               Go back
